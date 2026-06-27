@@ -1,24 +1,21 @@
 function VideoSection() {
+  return (
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      
+      <h2>🍦 Ice Cream Video</h2>
 
-return(
+      <iframe
+        width="100%"
+        height="400"
+        src="https://www.youtube.com/embed/8Qbax_1szSs"
+        title="Ice Cream Video"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
 
-<section className="video">
-
-<h2>Watch Our Story</h2>
-
-<iframe
-width="800"
-height="450"
-src="https://www.youtube.com/embed/9No-FiEInLA"
-title="Ice Cream"
-allowFullScreen>
-
-</iframe>
-
-</section>
-
-)
-
+    </div>
+  );
 }
 
-export default VideoSection
+export default VideoSection;
