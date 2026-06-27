@@ -1,66 +1,55 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
-function Cart(){
+function Cart() {
+  const { cart, increaseQty, decreaseQty, removeFromCart, totalPrice } =
+    useContext(CartContext);
 
-const {cart,removeFromCart}=useContext(CartContext);
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>🛒 तुमची Cart</h1>
 
-const total=cart.reduce((sum,item)=>sum+item.price,0);
+      {cart.length === 0 ? (
+        <h3>Cart रिकामी आहे 😢</h3>
+      ) : (
+        cart.map((item, i) => (
+          <div
+            key={i}
+            style={{
+  border: "1px solid #ddd",
+  margin: "10px auto",
+  padding: "15px",
+  width: "300px",
+  borderRadius: "10px",
+  background: "white"
+}}
+          >
+            <h3>{item.name}</h3>
 
-return(
+            <p>₹{item.price}</p>
 
-<section className="cart">
+            <div>
+              <button onClick={() => decreaseQty(item.name)}>➖</button>
 
-<h1>Your Cart 🛒</h1>
+              <span style={{ margin: "0 10px" }}>{item.qty}</span>
 
-{
+              <button onClick={() => increaseQty(item.name)}>➕</button>
+            </div>
 
-cart.length===0 ?
+            <button onClick={() => removeFromCart(item.name)}>
+              ❌ Remove
+            </button>
+          </div>
+        ))
+      )}
 
-<h2>Cart is Empty</h2>
-
-:
-
-<>
-
-{
-
-cart.map((item,index)=>(
-
-<div className="cart-item" key={index}>
-
-<img src={item.image} alt={item.name}/>
-
-<div>
-
-<h3>{item.name}</h3>
-
-<p>₹{item.price}</p>
-
-</div>
-
-<button
-onClick={()=>removeFromCart(index)}
->
-Remove
-</button>
-
-</div>
-
-))
-
-}
-
-<h2>Total : ₹{total}</h2>
-
-</>
-
-}
-
-</section>
-
-)
-
+      <h2>Total Amount: ₹{totalPrice}</h2>
+      <a href="/checkout">
+  <button>🧾 Checkout </button>
+</a>
+    </div>
+    
+  );
 }
 
 export default Cart;

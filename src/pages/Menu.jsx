@@ -109,15 +109,8 @@ item.name.toLowerCase().includes(search.toLowerCase())
 
 </div>
 
-<button
-  onClick={() =>
-    addToCart({
-      ...item,
-      qty: quantity[item.name] || 1,
-    })
-  }
->
-  Add To Cart
+<button>
+  🛒 Add {quantity[item.name] || 1}
 </button>
 </div>
 
